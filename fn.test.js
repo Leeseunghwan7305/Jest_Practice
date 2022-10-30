@@ -56,10 +56,34 @@ test("비어있지 않은 문자열은 true 입니다.", () => {
 
 test("유저 리스트에 mike 가 있나??", () => {
   const user = "Mike2";
-  const userList = ["Tom", "Jane", "Kai", "Mike"];
+  const userList = ["Tom", "Jane", "Kai", "Mike2"];
   expect(userList).toContain(user);
 });
 
 test("이거 에러 나나요?", () => {
   expect(() => fn.throwErr().toThrow("oo"));
+});
+
+//mock function == 테스트 하기 위해 흉내만 내는 함수
+
+const mockFn = jest.fn();
+
+function forEachAdd1(arr) {
+  arr.forEach((num) => {
+    mockFn(num + 1);
+  });
+}
+
+forEachAdd1([10, 20, 30]);
+
+//[[10],[20],[30]]
+
+test("함수 호출은 3번 됩니다.", () => {
+  expect(mockFn.mock.calls.length).toBe(3);
+});
+
+test("전달된 값은 11, 21, 31 입니다", () => {
+  expect(mockFn.mock.calls[0][0]).toBe(11);
+  expect(mockFn.mock.calls[1][0]).toBe(21);
+  expect(mockFn.mock.calls[2][0]).toBe(31);
 });
