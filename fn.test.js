@@ -55,7 +55,7 @@ test("비어있지 않은 문자열은 true 입니다.", () => {
 //toContain 포함하고있나?
 
 test("유저 리스트에 mike 가 있나??", () => {
-  const user = "Mike";
+  const user = "Mike2";
   const userList = ["Tom", "Jane", "Kai", "Mike"];
   expect(userList).toContain(user);
 });
